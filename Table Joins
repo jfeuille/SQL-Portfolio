@@ -8,7 +8,7 @@ INNER JOIN city C ON B.city_id = C.city_id
 INNER JOIN country D ON C.country_id = D.country_id
 GROUP BY country
 ORDER BY customer_count DESC
-LIMIT 10
+LIMIT 10;
 
 
 
@@ -27,7 +27,7 @@ WHERE D.country IN ('India', 'China', 'United States', 'Japan',
                    'Philippines', 'Turkey', 'Indonesia')
 GROUP BY top_cities
 ORDER BY customer_count DESC
-LIMIT 10
+LIMIT 10;
 
 
 
@@ -51,4 +51,4 @@ WHERE D.city IN ('Aurora', 'Tokat', 'Tarsus', 'Atlixco',
                 'Aparecida de Goinia', 'Zalatun', 'Taguig')
 GROUP BY top_customers, first_name, last_name, city, country
 ORDER BY highest_payment_amounts DESC
-LIMIT 5
+LIMIT 5;
