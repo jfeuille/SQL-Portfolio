@@ -19,7 +19,7 @@ WITH total_paid_cte (customer_id, first_name, last_name, city, country, highest_
                      ORDER BY highest_payment_amounts DESC
                      LIMIT 5)
 SELECT ROUND(AVG(highest_payment_amounts),2) AS average_payment
-FROM total_paid_cte
+FROM total_paid_cte;
 
 
 
@@ -55,4 +55,4 @@ INNER JOIN city C ON B.city_id = C.city_id
 INNER JOIN country D ON C.country_id = D.country_id
 LEFT JOIN  country_count_cte E ON D.country_id = E.country_id
 GROUP B D.country
-ORDER BY top_customer_count DESC
+ORDER BY top_customer_count DESC;
