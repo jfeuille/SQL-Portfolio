@@ -1,0 +1,56 @@
+# SQL query to return the average amount paid by Rockbuster's Top 5 customers.
+
+SELECT ROUND(AVG(total_amount_paid.highest_payments_amounts),2) AS average_payment
+FROM
+    (SELECT payment.customer_id AS top_customers,
+            customer.first_name,
+            customer.last_name,
+            city.city,
+            country.country,
+            SUM(payment.amount) AS highest_payment_amounts
+     FROM payment
+     INNER JOIN customer ON payment.customer_id = customer.customer_id
+     INNER JOIN address ON customer.address_id = address.address_id
+     INNER JOIN city ON address.city_id = city.city_id
+     INNER JOIN country ON city.country_id = country.country_id
+     WHERE city.city IN ('Aurora', 'Tokat', 'Tarsus', 'Atlixco',
+                         'Emeishan', 'Pontianak', 'Shimoga',
+                         'Aparecida de Goinia', 'Zalatun', 'Taguig')
+     GROUP BY top_customers, first_name, last_name, city, country
+     ORDER BY highest_payment_amounts DESC
+     LIMIT 5) AS total_amount_paid
+
+
+
+-----------------------------------
+
+# SQL query to return the total number of Top 5 customers are based within each country.
+
+SELECT D.country,
+       COUNT(DISTINCT customer_id) AS all_customer_count,
+       COUNT(DISTINCT top_customers.country) AS top_customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+LEFT JOIN
+        (SELECT payment.customer_id AS top_customers,
+                customer.first_name,
+                customer.last_name,
+                city.city,
+                country.country,
+                SUM(payment.amount) AS highest_payment_amounts
+         FROM payment
+         INNER JOIN customer ON payment.customer_id = customer.customer_id
+         INNER JOIN address ON customer.address_id = address.address_id
+         INNER JOIN city ON address.city_id = city.city_id
+         INNER JOIN country ON city.country_id = country.country_id
+         WHERE city.city IN ('Aurora', 'Tokat', 'Tarsus', 'Atlixco',
+                             'Emeishan', 'Pontianak', 'Shimoga',
+                             'Aparecida de Goinia', 'Zalatun', 'Taguig')
+         GROUP BY top_customers, first_name, last_name, city, country
+         ORDER BY highest_payment_amounts DESC
+         LIMIT 5) AS top_customers
+    ON D.country = top_customers.country
+GROUP BY D.country
+ORDER BY top_customer_count DESC
