@@ -1,0 +1,43 @@
+# Sample SQL queries for summarizing and cleaning data
+
+
+------------------------------
+
+# Query 1 - Duplicate check from "film" table
+
+SELECT title,
+       release_year,
+       description,
+       length,
+       rating,
+       COUNT (*)
+FROM film
+GROUP BY title,
+         release_year,
+         description,
+         length,
+         rating
+HAVING COUNT (*) > 1;
+
+
+
+-------------------------------
+
+# Query 2 - Searching for non-uniform or incorrect values in "rating" column
+
+SELECT DISTINCT rating
+FROM film;
+
+
+
+-------------------------------
+
+# Query 3 - Returning descriptive statistics for "store_id" column in "customer" table
+
+SELECT MIN (store_id),
+       MAX (store_id),
+       AVG (store_id),
+       COUNT (store_id),
+       COUNT (*) AS count_rows
+FROM customer;
+
