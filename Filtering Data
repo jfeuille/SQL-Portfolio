@@ -1,0 +1,70 @@
+# SQL queries for filtering data using specific criteria.
+
+# Example 1 - Returing descriptive statistics for films with G or PG ratings, using HAVING command.
+
+SELECT rating,
+       COUNT(rating) AS count_of_movies,
+       AVG(rental_rate) AS average_movie_rental_rate,
+       MIN(rental_duration) AS minimum_rental_duration,
+       MAX(rental_duration) AS maximum_rental_duration
+FROM film
+GROUP BY rating
+HAVING rating IN ('PG', 'G');
+
+
+
+-------------------------------
+
+# Example 2 - Returning list of all films containing "Uptown" in their titles.
+
+SELECT film_id,
+       title,
+       description
+FROM film
+WHERE title LIKE '%Uptown%';
+
+
+
+-------------------------------
+
+# Example 3 - Returning list of all films with length of 120 minutes and a rental rate over $2.99.
+
+SELECT film_id,
+       title,
+       description,
+       length,
+       rental_rate
+FROM film
+WHERE length > 120
+      AND rental_rate > 2.99
+ORDER BY film_id ASC;
+
+
+
+-------------------------------
+
+# Example 4 - Returning list of all films where length of rental is between 4 and 6 days (or, greater than 3 days and less than 7 days).
+
+SELECT film_id,
+       title,
+       description,
+       rental_duration
+FROM film
+WHERE rental_duration > 3
+      AND rental_duration < 7
+ORDER BY film_id;
+
+
+
+-------------------------------
+
+# Example 5 - Returning a list of all films with G or PG ratings.
+
+SELECT film_id,
+       title,
+       description,
+       rating
+FROM film
+WHERE rating IN ('PG', 'G')
+ORDER BY film_id;
+
