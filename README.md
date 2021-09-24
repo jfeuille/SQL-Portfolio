@@ -8,13 +8,13 @@ Rockbuster Stealth LLC (a fictional company) is a movie rental company that used
 
 Key Questions & Objectives:
 The Rockbuster Stealth Management Board has asked a series of business questions and they expect data-driven answers that they can use for their 2020 company strategy. Here are their main questions:
-● Which movies contributed the most/least to revenue gain?
-● What was the average rental duration for all videos?
-● Which countries are Rockbuster customers based in?
-● Where are customers with a high lifetime value based?
-● Do sales figures vary between geographic regions?
+  1. Which movies contributed the most/least to revenue gain?
+  2. What was the average rental duration for all videos?
+  3. Which countries are Rockbuster customers based in?
+  4. Where are customers with a high lifetime value based?
+  5. Do sales figures vary between geographic regions?
 
 
 
-Notes:
+Note:
 The database for this project is entirely fictional and fabricated by CareerFoundry. (Absolutely none of the movie titles make sense.)
