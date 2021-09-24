@@ -18,7 +18,7 @@ FROM
                          'Aparecida de Goinia', 'Zalatun', 'Taguig')
      GROUP BY top_customers, first_name, last_name, city, country
      ORDER BY highest_payment_amounts DESC
-     LIMIT 5) AS total_amount_paid
+     LIMIT 5) AS total_amount_paid;
 
 
 
@@ -53,4 +53,4 @@ LEFT JOIN
          LIMIT 5) AS top_customers
     ON D.country = top_customers.country
 GROUP BY D.country
-ORDER BY top_customer_count DESC
+ORDER BY top_customer_count DESC;
