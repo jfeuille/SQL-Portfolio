@@ -1,0 +1,83 @@
+# Samples of basic SQL commands.
+
+# Example 1 - Inserting new movie categories into "category" column.
+
+INSERT INTO category (name)
+VAlUES
+    ('Thiller'),
+    ('Crime'),
+    ('Mystery'),
+    ('Romance'),
+    ('War');
+    
+
+
+-------------------------------
+
+# Example 2 - Retrieving all records of films named "African Egg."
+
+SELECT film_id
+FROM film
+WHERE title = 'African Egg';
+
+
+
+-------------------------------
+
+# Example 3 - Updating record of a film with a new film category.
+
+UPDATE film_category
+SET category_id = 18
+WHERE category_id = 5;
+
+
+
+-------------------------------
+
+# Example 4 - Using EXPLAIN command to test the speed and efficiency of a query.
+
+EXPLAIN
+SELECT film_id,
+       title
+FROM film;
+
+
+
+-------------------------------
+
+# Example 5 - Using ORDER BY command to return an ordered list of films.
+
+SELECT film_id,
+       title,
+       release_year,
+       rental_rate
+FROM film
+ORDER BY title,
+         release_year,
+         rental_rate ASC;
+         
+
+
+-------------------------------
+
+# Example 6 - Using AVG & GROUP BY to return average rental prices for each rating category.
+
+SELECT rating,
+       ROUND(AVG(rental_rate),2) AS average_rental_rate
+FROM film
+GROUP BY rating
+ORDER BY rating ASC;
+
+
+
+-------------------------------
+
+# Example 7 - Using MIN and MAX functions to return descriptive statistical data for each rating cateogory.
+
+SELECT rating,
+       MIN(rental_duration) AS min_rental_duration,
+       MAX(rental_duration) AS max_rental_duration
+FROM film
+GROUP BY rating
+ORDER BY rating ASC;
+
